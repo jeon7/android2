@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="tax_ratio_string">
+        <item>7 Prozent</item>
+        <item>16 Prozent</item>
+        <item>19 Prozent</item>
+    </string-array>
+    <integer-array name="tax_ratio_integer">
+        <item>7</item>
+        <item>16</item>
+        <item>19</item>
+    </integer-array>
+</resources>
+
+

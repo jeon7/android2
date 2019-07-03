@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Brutto Netto Rechner</string>
+    <string name="main_textView_description" translatable="false">Bitte geben Sie den Wert unten ein und wählen Sie den Prozentsatz für die entsprechende Rechnung aus.</string>
+    <string name="str_gross" translatable="false">Brutto</string>
+    <string name="str_net" translatable="false">Netto</string>
+    <string name="button_compute" translatable="false">Berechnen</string>
+    <string name="str_tax" translatable="false">Umsatz Steuer</string>
+    <string name="result_gross" translatable="false">\?</string>
+    <string name="result_tax" translatable="false">\?</string>
+    <string name="result_net" translatable="false">\?</string>
+</resources>
