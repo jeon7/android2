@@ -8,9 +8,12 @@ import android.widget.Toast;
 
 public class ResultActivity extends AppCompatActivity {
 
-    TextView result_gross;
-    TextView result_tax;
-    TextView result_net;
+    public final static String TAG = "ResultActivity";
+    TextView displayGross;
+    TextView displayTax;
+    TextView displayNet;
+    float resultGross;
+    float resultNet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,39 +25,36 @@ public class ResultActivity extends AppCompatActivity {
         String checkedRadioButton = extras.getString("checkedRadioButton");
         int selectedTaxRatio = extras.getInt("selectedTaxRatio");
 
-        result_gross = findViewById(R.id.textView_result_gross);
-        result_tax = findViewById(R.id.textView_result_tax);
-        result_net = findViewById(R.id.textView_result_net);
-        computeAndDisplay(moneyUserInput, checkedRadioButton, selectedTaxRatio);
+        displayGross = findViewById(R.id.textView_result_gross);
+        displayTax = findViewById(R.id.textView_result_tax);
+        displayNet = findViewById(R.id.textView_result_net);
+        computeTax(moneyUserInput, checkedRadioButton, selectedTaxRatio);
+
+        displayGross.setText(String.valueOf(resultGross));
+        displayTax.setText(String.valueOf(selectedTaxRatio));
+        displayNet.setText(String.valueOf(resultNet));
 
         //test
         String str = String.format("%s %s %d", moneyUserInput, checkedRadioButton, selectedTaxRatio);
         Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
     }
 
-    private void computeAndDisplay(String moneyUserInput, String checkedRadioButton, int selectedTaxRatio){
-        String gross_selected = getResources().getString(R.string.str_gross);
-        String net_selected = getResources().getString(R.string.str_net);
-        float gross;
-        float net;
+    private void computeTax(String moneyUserInput, String checkedRadioButton, int selectedTaxRatio){
+        String gross_selected = getResources().getString(R.string.all_gross);
+        String net_selected = getResources().getString(R.string.all_net);
 
         if(checkedRadioButton.equals(gross_selected)) {
-            gross = Float.parseFloat(moneyUserInput);
-            net = gross / (1.0f + (float)selectedTaxRatio * 0.01f);
+            resultGross = Float.parseFloat(moneyUserInput);
+            resultNet = resultGross / (1.0f + (float)selectedTaxRatio * 0.01f);
         } else if(checkedRadioButton.equals(net_selected)) {
-            net = Float.parseFloat(moneyUserInput);
-            gross = net * (1.0f + (float)selectedTaxRatio * 0.01f);
+            resultNet = Float.parseFloat(moneyUserInput);
+            resultGross = resultNet * (1.0f + (float)selectedTaxRatio * 0.01f);
         } else {
-            Log.e("ResultActivity", "computeDisplay() problem");
-            Log.e("ResultActivity", "checkedRadioButton = " + checkedRadioButton +
+            Log.d(TAG, "computeDisplay() problem");
+            Log.d(TAG, "checkedRadioButton = " + checkedRadioButton +
                     ", gross_selected = " + gross_selected + ", net_selected = " + net_selected);
-            gross = -1.0f;
-            net = -1.0f;
+            resultGross = -1.0f;
+            resultNet = -1.0f;
         }
-
-        result_gross.setText(String.valueOf(gross));
-        result_tax.setText(String.valueOf(selectedTaxRatio));
-        result_net.setText(String.valueOf(net));
-
     }
 }

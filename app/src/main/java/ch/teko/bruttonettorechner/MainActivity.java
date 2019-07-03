@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int[] tax_int = getResources().getIntArray(R.array.tax_ratio_integer);
-                selectedTaxRatio = tax_int[position];
+                int[] taxRatio = getResources().getIntArray(R.array.tax_ratio_integer);
+                selectedTaxRatio = taxRatio[position];
             }
 
             @Override
